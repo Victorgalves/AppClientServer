@@ -1,39 +1,65 @@
 import socket
-import time
+import hashlib  # Para checksum
 
-# Função para enviar um pacote individual
-def enviar_pacote(client_socket, mensagem, erro=False):
-    # Simulação de erro de integridade
-    if erro:
-        mensagem = mensagem + "CORROMPIDO"  # Corrupção no pacote
+host = socket.gethostname()
+port = 8001
+address = (host, port)
 
-    client_socket.send(mensagem.encode()) # Enviar dados do cliente para o servidor
-    response = client_socket.recv(1024) # Receber uma resposta do servidor
-    print(f"Resposta do servidor: {response.decode()}") # Exibi resposta do servidor
+def calcular_checksum(mensagem):
+    """Calcula o checksum MD5 da mensagem."""
+    return hashlib.md5(mensagem.encode()).hexdigest()
 
-# Função para enviar vários pacotes em rajada
-def enviar_lote_pacotes(client_socket, pacotes, erro=False):
-    for pacote in pacotes:
-        # Simula erro de integridade em pacotes específicos
-        if erro:
-            pacote = pacote + "CORROMPIDO"
+def enviar_mensagem(mensagem):
+    """Envia a mensagem com checksum para o servidor."""
+    checksum = calcular_checksum(mensagem)
+    pacote = f"{mensagem}|{checksum}"
+    if protocol == 'UDP':
+        sock.sendto(pacote.encode(), address)
+    else:
+        sock.send(pacote.encode())
 
-        client_socket.send(pacote.encode()) # Enviar pacode do cliente para o servidor
-        response = client_socket.recv(1024) # Receber uma resposta do servidor
-        print(f"Resposta do servidor: {response.decode()}") # Exibi resposta do servidor
-        time.sleep(1)  # Simula atraso no envio
+def exibir_menu_protocolo():
+    print("Escolha o protocolo de transporte:")
+    print("1. TCP")
+    print("2. UDP")
+    escolha = input("Escolha uma opcao: ")
+    return 'TCP' if escolha == '1' else 'UDP'
 
+# Escolha do protocolo de transporte
+protocol = exibir_menu_protocolo()
 
-if __name__ == "__main__":
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Cria uma socket para o cliente
-    client_socket.connect(('localhost', 8081)) # Estabelece a conexão entre o cliente e o servidor
+# Configuração do socket
+if protocol == 'UDP':
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+elif protocol == 'TCP':
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect(address)
 
-    # Teste com pacotes individuais
-    enviar_pacote(client_socket, "Pacote 1", erro=False)  # Pacote correto
-    enviar_pacote(client_socket, "Pacote 2", erro=True)   # Pacote com erro
+while True:
+    print("\nMenu:")
+    print("1. Enviar mensagem")
+    print("2. Solicitar grafico")
+    print("3. Enviar pacote corrompido")
+    print("4. Desconectar")
 
-    # Teste com lotes de pacotes
-    pacotes = ["Pacote 3", "Pacote 4", "Pacote 5"]
-    enviar_lote_pacotes(client_socket, pacotes, erro=False)  # Envio normal de lotes
+    opcao = input("Escolha uma opcao: ")
 
-    client_socket.close() # Fecha a conexão do cliente com o seervidor
+    if opcao == '1':
+        mensagem = input("Digite a mensagem: ")
+        enviar_mensagem(mensagem)
+
+    elif opcao == '2':
+        enviar_mensagem('grafico')
+
+    elif opcao == '3':
+        enviar_mensagem("mensagem_corrompida|00000000000000000000000000000000")
+
+    elif opcao == '4':
+        enviar_mensagem('dcs')
+        break
+
+    else:
+        print("Opcao invalida. Tente novamente.")
+
+if protocol == 'TCP':
+    sock.close()
