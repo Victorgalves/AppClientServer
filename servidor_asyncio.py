@@ -43,10 +43,10 @@ async def handle_client(reader, writer, args):
     logging.info(f'Conexão estabelecida com {addr}')
     try:
         # Negociar protocolo
-        protocol = (await reader.read(2)).decode()
-        selected_protocol = args.protocol if protocol in ['GB', 'SR'] else 'SR'
+        protocol = (await reader.read(3)).decode().strip()
+        selected_protocol = args.protocol if protocol in ['GBN', 'SR'] else 'SR'
         logging.info(f'Protocolo negociado: {selected_protocol}')
-        writer.write(selected_protocol.encode())
+        writer.write(selected_protocol.ljust(3).encode())
         await writer.drain()
 
         # Enviar tamanho da janela de recepção
