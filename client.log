@@ -1,0 +1,44 @@
+2024-11-25 02:49:48,414 [INFO] Protocolo selecionado: SR
+2024-11-25 02:49:48,414 [INFO] Janela de recepção do servidor: 5
+2024-11-25 02:49:48,415 [INFO] Enviado pacote Seq=0, Dados=b'Pacote 0'
+2024-11-25 02:49:50,419 [INFO] Recebido ACK para Seq=0
+2024-11-25 02:49:50,419 [INFO] Slow Start: congestion_window=2
+2024-11-25 02:49:50,440 [INFO] Enviado pacote Seq=1, Dados=b'Pacote 1'
+2024-11-25 02:49:50,441 [INFO] Enviado pacote Seq=2, Dados=b'Pacote 2'
+2024-11-25 02:49:52,445 [INFO] Recebido ACK para Seq=1
+2024-11-25 02:49:52,446 [INFO] Slow Start: congestion_window=3
+2024-11-25 02:49:54,445 [WARNING] Temporizador expirado para pacote 2. Reenviando...
+2024-11-25 02:49:54,446 [INFO] Reenviando pacote Seq=2, Dados=b'Pacote 2'
+2024-11-25 02:49:54,458 [INFO] Recebido ACK para Seq=2
+2024-11-25 02:49:54,459 [WARNING] Recebido ACK para Seq=2 com erro de checksum.
+2024-11-25 02:49:56,451 [INFO] Recebido ACK para Seq=2
+2024-11-25 02:49:56,452 [WARNING] Recebido ACK para Seq=2 com erro de checksum.
+2024-11-25 02:49:58,446 [WARNING] Temporizador expirado para pacote 2. Reenviando...
+2024-11-25 02:49:58,447 [INFO] Reenviando pacote Seq=2, Dados=b'Pacote 2'
+2024-11-25 02:50:00,451 [INFO] Recebido ACK para Seq=2
+2024-11-25 02:50:00,452 [WARNING] Recebido ACK para Seq=2 com erro de checksum.
+2024-11-25 02:50:02,556 [WARNING] Temporizador expirado para pacote 2. Reenviando...
+2024-11-25 02:50:02,557 [INFO] Reenviando pacote Seq=2, Dados=b'Pacote 2'
+2024-11-25 02:50:04,564 [INFO] Recebido ACK para Seq=2
+2024-11-25 02:50:04,564 [WARNING] Recebido ACK para Seq=2 com erro de checksum.
+2024-11-25 02:50:06,561 [WARNING] Temporizador expirado para pacote 2. Reenviando...
+2024-11-25 02:50:06,561 [INFO] Reenviando pacote Seq=2, Dados=b'Pacote 2'
+2024-11-25 02:50:08,572 [INFO] Recebido ACK para Seq=2
+2024-11-25 02:50:08,573 [WARNING] Recebido ACK para Seq=2 com erro de checksum.
+2024-11-25 02:50:10,567 [WARNING] Temporizador expirado para pacote 2. Reenviando...
+2024-11-25 02:50:10,567 [INFO] Reenviando pacote Seq=2, Dados=b'Pacote 2'
+2024-11-25 02:50:12,572 [INFO] Recebido ACK para Seq=2
+2024-11-25 02:50:12,572 [WARNING] Recebido ACK para Seq=2 com erro de checksum.
+2024-11-25 02:50:14,677 [WARNING] Temporizador expirado para pacote 2. Reenviando...
+2024-11-25 02:50:14,677 [ERROR] Número máximo de retransmissões atingido para pacote 2. Ignorando e avançando para o próximo pacote.
+2024-11-25 02:50:14,698 [INFO] Enviado pacote Seq=3, Dados=b'Pacote 3'
+2024-11-25 02:50:16,703 [INFO] Recebido ACK para Seq=3
+2024-11-25 02:50:16,703 [INFO] Atualização da janela de recepção do servidor: 7
+2024-11-25 02:50:16,703 [INFO] Congestion Avoidance: congestion_window=2.00
+2024-11-25 02:50:16,724 [INFO] Enviado pacote Seq=4, Dados=b'Pacote 4'
+2024-11-25 02:50:16,725 [INFO] Enviado pacote Seq=5, Dados=b'Pacote 5'
+2024-11-25 02:50:18,729 [INFO] Recebido ACK para Seq=4
+2024-11-25 02:50:18,729 [INFO] Congestion Avoidance: congestion_window=2.50
+2024-11-25 02:50:20,734 [INFO] Recebido ACK para Seq=5
+2024-11-25 02:50:20,735 [INFO] Congestion Avoidance: congestion_window=2.90
+2024-11-25 02:50:20,756 [INFO] Envio concluído.

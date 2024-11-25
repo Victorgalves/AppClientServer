@@ -1,42 +1,67 @@
+# my_protocol.py
+
 import struct
 
-def calculate_checksum(data):
-    checksum = sum(data) % 65535
-    return checksum.to_bytes(2, byteorder='big')
+# Definição dos flags
+FLAG_ACK = 1
+FLAG_NAK = 2
 
-def create_packet(seq_num, data, ack=False, nak=False, checksum_error=False):
+def calculate_checksum(data):
+    """
+    Calcula um checksum simples somando os valores dos bytes.
+    """
+    checksum = 0
+    for byte in data:
+        checksum += byte
+    return checksum & 0xFFFF  # Retorna os últimos 16 bits
+
+def create_packet(seq_num, data, ack=False, nak=False, corrupt_ack=False):
+    """
+    Cria um pacote com a seguinte estrutura:
+    - Sequência (4 bytes, big endian)
+    - Flags (1 byte)
+    - Checksum (2 bytes, big endian)
+    - Dados (variável)
+    """
     flags = 0
     if ack:
-        flags |= 1  # Bit 0
+        flags |= FLAG_ACK
     if nak:
-        flags |= 2  # Bit 1
-    if checksum_error:
-        flags |= 4  # Bit 2
+        flags |= FLAG_NAK
 
-    seq_num_bytes = struct.pack('!I', seq_num)  # 4 bytes
-    flags_bytes = struct.pack('!B', flags)      # 1 byte
-    data_length = struct.pack('!I', len(data))  # 4 bytes
+    # Calcular checksum sobre os dados
     checksum = calculate_checksum(data)
 
-    if checksum_error:
-        # Introduzir erro no checksum
-        checksum = b'\x00\x00'
+    # Se for para corromper o ACK/NAK, inverte os bits do checksum
+    if corrupt_ack:
+        checksum = ~checksum & 0xFFFF
 
-    packet = seq_num_bytes + flags_bytes + checksum + data_length + data
+    # Estrutura do pacote: sequencia (4), flags (1), checksum (2), dados
+    packet = struct.pack('>I', seq_num)  # 4 bytes para a sequência
+    packet += struct.pack('B', flags)    # 1 byte para flags
+    packet += struct.pack('>H', checksum)  # 2 bytes para checksum
+    packet += data  # Dados
+
     return packet
 
 def unpack_packet(packet):
-    if len(packet) < 11:
+    """
+    Descompacta um pacote e retorna:
+    - Sequência (int)
+    - ACK flag (bool)
+    - NAK flag (bool)
+    - Checksum recebido (int)
+    - Dados (bytes)
+    """
+    if len(packet) < 7:
         raise ValueError("Pacote muito curto para desempacotar.")
 
-    seq_num = struct.unpack('!I', packet[0:4])[0]
-    flags = struct.unpack('!B', packet[4:5])[0]
-    checksum = packet[5:7]
-    data_length = struct.unpack('!I', packet[7:11])[0]
-    data = packet[11:11+data_length]
+    seq_num = struct.unpack('>I', packet[0:4])[0]
+    flags = struct.unpack('B', packet[4:5])[0]
+    checksum = struct.unpack('>H', packet[5:7])[0]
+    data = packet[7:]
 
-    ack_flag = bool(flags & 1)
-    nak_flag = bool(flags & 2)
-    checksum_error = bool(flags & 4)
+    ack_flag = bool(flags & FLAG_ACK)
+    nak_flag = bool(flags & FLAG_NAK)
 
     return seq_num, ack_flag, nak_flag, checksum, data

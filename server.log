@@ -1,0 +1,47 @@
+2024-11-25 02:49:36,211 [INFO] 
+
+==================================================
+2024-11-25 02:49:36,211 [INFO] Iniciando nova execução do servidor em 2024-11-25 02:49:36.211671
+2024-11-25 02:49:36,211 [INFO] ==================================================
+
+2024-11-25 02:49:36,217 [INFO] Servidor escutando em ('0.0.0.0', 5001)
+2024-11-25 02:49:48,414 [INFO] Conexão estabelecida com ('127.0.0.1', 49518)
+2024-11-25 02:49:48,414 [INFO] Protocolo negociado: SR
+2024-11-25 02:49:50,417 [INFO] Recebido pacote Seq=0, Dados=Pacote 0
+2024-11-25 02:49:50,418 [INFO] Atualizando janela de recepção para 5
+2024-11-25 02:49:50,418 [INFO] Pacote 0 armazenado na janela (SR).
+2024-11-25 02:49:50,418 [INFO] Processando pacote 0
+2024-11-25 02:49:50,418 [INFO] Enviando ACK para Seq=0
+2024-11-25 02:49:52,444 [INFO] Recebido pacote Seq=1, Dados=Pacote 1
+2024-11-25 02:49:52,444 [INFO] Pacote 1 armazenado na janela (SR).
+2024-11-25 02:49:52,444 [INFO] Processando pacote 1
+2024-11-25 02:49:52,445 [INFO] Enviando ACK para Seq=1
+2024-11-25 02:49:54,446 [INFO] Recebido pacote Seq=2, Dados=Pacote 2
+2024-11-25 02:49:54,447 [INFO] Pacote 2 armazenado na janela (SR).
+2024-11-25 02:49:54,447 [INFO] Processando pacote 2
+2024-11-25 02:49:54,447 [INFO] Enviando ACK com erro para Seq=2
+2024-11-25 02:49:56,450 [INFO] Recebido pacote Seq=2, Dados=Pacote 2
+2024-11-25 02:49:56,451 [INFO] Enviando ACK com erro para Seq=2
+2024-11-25 02:50:00,450 [INFO] Recebido pacote Seq=2, Dados=Pacote 2
+2024-11-25 02:50:00,450 [INFO] Atualizando janela de recepção para 3
+2024-11-25 02:50:00,450 [INFO] Enviando ACK com erro para Seq=2
+2024-11-25 02:50:04,560 [INFO] Recebido pacote Seq=2, Dados=Pacote 2
+2024-11-25 02:50:04,560 [INFO] Enviando ACK com erro para Seq=2
+2024-11-25 02:50:08,564 [INFO] Recebido pacote Seq=2, Dados=Pacote 2
+2024-11-25 02:50:08,565 [INFO] Atualizando janela de recepção para 7
+2024-11-25 02:50:08,565 [INFO] Enviando ACK com erro para Seq=2
+2024-11-25 02:50:12,570 [INFO] Recebido pacote Seq=2, Dados=Pacote 2
+2024-11-25 02:50:12,570 [INFO] Enviando ACK com erro para Seq=2
+2024-11-25 02:50:16,701 [INFO] Recebido pacote Seq=3, Dados=Pacote 3
+2024-11-25 02:50:16,702 [INFO] Pacote 3 armazenado na janela (SR).
+2024-11-25 02:50:16,702 [INFO] Processando pacote 3
+2024-11-25 02:50:16,702 [INFO] Enviando ACK para Seq=3
+2024-11-25 02:50:18,727 [INFO] Recebido pacote Seq=4, Dados=Pacote 4
+2024-11-25 02:50:18,727 [INFO] Pacote 4 armazenado na janela (SR).
+2024-11-25 02:50:18,728 [INFO] Processando pacote 4
+2024-11-25 02:50:18,728 [INFO] Enviando ACK para Seq=4
+2024-11-25 02:50:20,730 [INFO] Recebido pacote Seq=5, Dados=Pacote 5
+2024-11-25 02:50:20,730 [INFO] Pacote 5 armazenado na janela (SR).
+2024-11-25 02:50:20,730 [INFO] Processando pacote 5
+2024-11-25 02:50:20,730 [INFO] Enviando ACK para Seq=5
+2024-11-25 02:50:20,757 [INFO] Conexão encerrada com ('127.0.0.1', 49518)
