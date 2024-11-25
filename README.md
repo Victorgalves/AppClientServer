@@ -63,11 +63,11 @@
 1. Abra dois terminais: um para o **servidor** e outro para o **cliente**.
 2. No terminal do servidor, execute:  
    ```bash
-   python servidor.py
+   python menu.py
    ```
 3. No terminal do cliente, execute:  
    ```bash
-   python cliente.py
+   python menu.py
    ```
 4. Siga as opções apresentadas no menu do cliente.
 
